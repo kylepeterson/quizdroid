@@ -33,12 +33,12 @@
             android:label="@string/title_activity_physics_intro" >
         </activity>
         <activity
-            android:name=".PhysicsQuestion"
-            android:label="@string/title_activity_physics_question" >
-        </activity>
-        <activity
             android:name=".MarvelIntroActivity"
             android:label="@string/title_activity_marvel_intro" >
+        </activity>
+        <activity
+            android:name=".MathResultsActivity"
+            android:label="@string/title_activity_math_results" >
         </activity>
     </application>
 

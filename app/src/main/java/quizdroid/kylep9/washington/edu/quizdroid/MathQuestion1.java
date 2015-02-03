@@ -47,31 +47,31 @@ public class MathQuestion1 extends ActionBarActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("Duba", "On click set for " + v.toString());
+
                 RadioGroup group = (RadioGroup) findViewById(R.id.mathoptions);
                 int selectId = group.getCheckedRadioButtonId();
 
                 if(selectId != -1) {
-                    if(current < questions.length - 1) {
-                        Intent nextActivity = new Intent(MathQuestion1.this, MathResults.class);
-                        Log.i("Duba", "intent set up from q1: " + nextActivity.toString());
-                        nextActivity.putExtra("count", count + 1);
-                        nextActivity.putExtra("current", current + 1);
-                        nextActivity.putExtra("questions", questions);
+                    Intent nextActivity = new Intent(MathQuestion1.this, MathResultsActivity.class);
+                    Log.i("Duba", "intent set up from q1: " + nextActivity.toString());
+                    nextActivity.putExtra("count", count + 1);
+                    nextActivity.putExtra("current", current + 1);
+                    nextActivity.putExtra("questions", questions);
 
-                        RadioButton selected = (RadioButton) findViewById(selectId);
-                        String selectedAnswer = selected.getText() + "";
+                    RadioButton selected = (RadioButton) findViewById(selectId);
+                    String selectedAnswer = selected.getText() + "";
 
-                        // Check if selected answer matches the correct one in the question object
-                        if (questions[current].getAnswers()[correct].equals(selectedAnswer)) {
-                            nextActivity.putExtra("correct", correct + 1);
-                            Log.i("Duba", "right answer");
-                        } else {
-                            nextActivity.putExtra("correct", correct);
-                            Log.i("Duba", "wrong answer");
-                        }
-                        startActivity(nextActivity);
-                        finish();
+                    // Check if selected answer matches the correct one in the question object
+                    if (questions[current].getAnswers()[rightAnswer].equals(selectedAnswer)) {
+                        nextActivity.putExtra("correct", correct + 1);
+                        Log.i("Duba", "right answer");
+                    } else {
+                        nextActivity.putExtra("correct", correct);
+                        Log.i("Duba", "wrong answer");
                     }
+                    startActivity(nextActivity);
+                    finish();
                 }
             }
         });
@@ -84,18 +84,22 @@ public class MathQuestion1 extends ActionBarActivity {
                 boolean checked = ((RadioButton) findViewById(R.id.ans1)).isChecked();
                 if (checked)
                     return 0;
+                break;
             case R.id.ans2:
                 checked = ((RadioButton) findViewById(R.id.ans2)).isChecked();
                 if (checked)
                     return 1;
+                break;
             case R.id.ans3:
                 checked = ((RadioButton) findViewById(R.id.ans3)).isChecked();
                 if (checked)
                     return 2;
+                break;
             case R.id.ans4:
                 checked = ((RadioButton) findViewById(R.id.ans4)).isChecked();
                 if (checked)
                     return 3;
+                break;
         }
         return -1;
     }

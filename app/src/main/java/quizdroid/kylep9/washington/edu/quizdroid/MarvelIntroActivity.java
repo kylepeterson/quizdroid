@@ -1,8 +1,8 @@
 package quizdroid.kylep9.washington.edu.quizdroid;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +18,13 @@ public class MarvelIntroActivity extends ActionBarActivity {
 
         String[] a1 = {"man with the webs", "wrestler hero", "sports guy", "gunslinger"};
         Question q1 = new Question("Who is Spiderman?", a1, 0);
-        String[] a2 = {"drawing man", "Ltan See", "apple man", "i can not say"};
-        Question q2 = new Question("Who is Stan Lee", a2, 0);
-        final Question[] questions = {q1, q2};
+        String[] a2 = {"apple man", "Ltan See", "drawing man", "i can not say"};
+        Question q2 = new Question("Who is Stan Lee", a2, 2);
+        String[] a3 = {"Your Tiny Brother", "man with no fear", "The man of iron", "Me"};
+        Question q3 = new Question("Who is Tony Stark?", a3, 2);
+        String[] a4 = {"My Dad", "Your Dad", "Our Dad", "I dont know my dad"};
+        Question q4 = new Question("Who is Professor X?", a4, 1);
+        final Question[] questions = {q1, q2, q3, q4};
         Button begin = (Button) findViewById(R.id.marvelbegin);
         begin.setOnClickListener(new View.OnClickListener() {
             @Override

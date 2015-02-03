@@ -6,13 +6,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Arrays;
 
 
-public class MathResults extends ActionBarActivity {
+public class MathResultsActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,23 +32,34 @@ public class MathResults extends ActionBarActivity {
         TextView correctBox = (TextView) findViewById(R.id.correctNum);
         correctBox.setText(correct + " Correct");
         TextView totalBox = (TextView) findViewById(R.id.totalNum);
-        correctBox.setText(count + " Correct");
-
+        totalBox.setText("Out of " + count);
+        Button next = (Button) findViewById(R.id.next);
         if(current == questions.length) {
-            Button next = (Button) findViewById(R.id.next);
             next.setText("Finish");
-            Intent nextActivity = new Intent(MathResults.this, MainActivity.class);
-            startActivity(nextActivity);
-            finish();
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent nextActivity = new Intent(MathResultsActivity.this, MainActivity.class);
+                    startActivity(nextActivity);
+                    finish();
+                }
+            });
         } else {
-            Intent nextActivity = new Intent(MathResults.this, MathQuestion1.class);
-            nextActivity.putExtra("count", count);
-            nextActivity.putExtra("current", current);
-            nextActivity.putExtra("questions", questions);
-            nextActivity.putExtra("correct", correct);
-            startActivity(nextActivity);
-            finish();
+            next.setText("Next");
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent nextActivity = new Intent(MathResultsActivity.this, MathQuestion1.class);
+                    nextActivity.putExtra("count", count);
+                    nextActivity.putExtra("current", current);
+                    nextActivity.putExtra("questions", questions);
+                    nextActivity.putExtra("correct", correct);
+                    startActivity(nextActivity);
+                    finish();
+                }
+            });
         }
+
     }
 
 

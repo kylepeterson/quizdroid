@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="quizdroid.kylep9.washington.edu.quizdroid.MathIntroActivity">
+    tools:context="quizdroid.kylep9.washington.edu.quizdroid.MathResultsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -47,3 +47,4 @@
             android:textColor="#FFFFFF" />
     </RelativeLayout>
 </LinearLayout>
+
