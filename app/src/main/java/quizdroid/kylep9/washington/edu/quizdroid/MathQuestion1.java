@@ -47,31 +47,33 @@ public class MathQuestion1 extends ActionBarActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Duba", "On click set for " + v.toString());
-
                 RadioGroup group = (RadioGroup) findViewById(R.id.mathoptions);
                 int selectId = group.getCheckedRadioButtonId();
 
                 if(selectId != -1) {
-                    Intent nextActivity = new Intent(MathQuestion1.this, MathResultsActivity.class);
-                    Log.i("Duba", "intent set up from q1: " + nextActivity.toString());
-                    nextActivity.putExtra("count", count + 1);
-                    nextActivity.putExtra("current", current + 1);
-                    nextActivity.putExtra("questions", questions);
+                    if(current < questions.length - 1) {
+                        Intent resultsActivity = new Intent(MathQuestion1.this, MathResults.class);
+                        Log.i("Duba", "intent set up from q1: " + resultsActivity.toString());
+                        resultsActivity.putExtra("count", count + 1);
+                        resultsActivity.putExtra("current", current + 1);
+                        resultsActivity.putExtra("questions", questions);
 
-                    RadioButton selected = (RadioButton) findViewById(selectId);
-                    String selectedAnswer = selected.getText() + "";
+                        RadioButton selected = (RadioButton) findViewById(selectId);
+                        String selectedAnswer = selected.getText() + "";
 
-                    // Check if selected answer matches the correct one in the question object
-                    if (questions[current].getAnswers()[rightAnswer].equals(selectedAnswer)) {
-                        nextActivity.putExtra("correct", correct + 1);
-                        Log.i("Duba", "right answer");
-                    } else {
-                        nextActivity.putExtra("correct", correct);
-                        Log.i("Duba", "wrong answer");
+                        // Check if selected answer matches the correct one in the question object
+                        if (questions[current].getAnswers()[correct].equals(selectedAnswer)) {
+                            resultsActivity.putExtra("correct", correct + 1);
+                            Log.i("Duba", "right answer");
+                        } else {
+                            resultsActivity.putExtra("correct", correct);
+                            Log.i("Duba", "wrong answer");
+                        }
+                        Log.i("Duba", "starting activity: " + resultsActivity.toString());
+                        startActivity(resultsActivity);
+                        finish();
+
                     }
-                    startActivity(nextActivity);
-                    finish();
                 }
             }
         });
