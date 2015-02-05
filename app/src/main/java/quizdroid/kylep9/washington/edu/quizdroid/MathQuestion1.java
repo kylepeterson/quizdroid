@@ -1,3 +1,5 @@
+// Kyle Peterson, INFO 498, QuizDroid
+// Question Activity
 package quizdroid.kylep9.washington.edu.quizdroid;
 
 import android.content.Intent;
@@ -51,60 +53,31 @@ public class MathQuestion1 extends ActionBarActivity {
                 int selectId = group.getCheckedRadioButtonId();
 
                 if(selectId != -1) {
-                    if(current < questions.length - 1) {
-                        Intent resultsActivity = new Intent(MathQuestion1.this, MathResults.class);
-                        Log.i("Duba", "intent set up from q1: " + resultsActivity.toString());
-                        resultsActivity.putExtra("count", count + 1);
-                        resultsActivity.putExtra("current", current + 1);
-                        resultsActivity.putExtra("questions", questions);
+                    Intent resultsActivity = new Intent(MathQuestion1.this, MathResultsActivity.class);
+                    Log.i("Duba", "intent set up from q1: " + resultsActivity.toString());
+                    resultsActivity.putExtra("count", count + 1);
+                    resultsActivity.putExtra("current", current + 1);
+                    resultsActivity.putExtra("questions", questions);
 
-                        RadioButton selected = (RadioButton) findViewById(selectId);
-                        String selectedAnswer = selected.getText() + "";
-
-                        // Check if selected answer matches the correct one in the question object
-                        if (questions[current].getAnswers()[correct].equals(selectedAnswer)) {
-                            resultsActivity.putExtra("correct", correct + 1);
-                            Log.i("Duba", "right answer");
-                        } else {
-                            resultsActivity.putExtra("correct", correct);
-                            Log.i("Duba", "wrong answer");
-                        }
-                        Log.i("Duba", "starting activity: " + resultsActivity.toString());
-                        startActivity(resultsActivity);
-                        finish();
-
+                    RadioButton selected = (RadioButton) findViewById(selectId);
+                    String selectedAnswer = selected.getText() + "";
+                    Log.i("Stew", "Right Answer " + questions[current].getAnswers()[rightAnswer] + " Selected Answer: " + selectedAnswer);
+                    // Check if selected answer matches the correct one in the question object
+                    if (questions[current].getAnswers()[rightAnswer].equals(selectedAnswer)) {
+                        resultsActivity.putExtra("correct", correct + 1);
+                        Log.i("Duba", "right answer");
+                    } else {
+                        resultsActivity.putExtra("correct", correct);
+                        Log.i("Duba", "wrong answer");
                     }
+                    Log.i("Duba", "starting activity: " + resultsActivity.toString());
+                    startActivity(resultsActivity);
+                    finish();
                 }
             }
         });
     }
 
-    public int isCorrect(View view) {
-
-        switch(view.getId()) {
-            case R.id.ans1:
-                boolean checked = ((RadioButton) findViewById(R.id.ans1)).isChecked();
-                if (checked)
-                    return 0;
-                break;
-            case R.id.ans2:
-                checked = ((RadioButton) findViewById(R.id.ans2)).isChecked();
-                if (checked)
-                    return 1;
-                break;
-            case R.id.ans3:
-                checked = ((RadioButton) findViewById(R.id.ans3)).isChecked();
-                if (checked)
-                    return 2;
-                break;
-            case R.id.ans4:
-                checked = ((RadioButton) findViewById(R.id.ans4)).isChecked();
-                if (checked)
-                    return 3;
-                break;
-        }
-        return -1;
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

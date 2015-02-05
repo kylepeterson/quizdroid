@@ -1,3 +1,6 @@
+// Kyle Peterson, INFO 498, QuizDroid
+// Intro to the math questions
+
 package quizdroid.kylep9.washington.edu.quizdroid;
 
 import android.content.Intent;

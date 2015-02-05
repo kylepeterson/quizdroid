@@ -1,3 +1,5 @@
+// Kyle Peterson, INFO 498, QuizDroid
+// Results Activity
 package quizdroid.kylep9.washington.edu.quizdroid;
 
 import android.content.Intent;

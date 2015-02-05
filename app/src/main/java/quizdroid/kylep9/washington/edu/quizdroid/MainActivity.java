@@ -1,3 +1,5 @@
+// Kyle Peterson, INFO 498, QuizDroid
+// Home page
 package quizdroid.kylep9.washington.edu.quizdroid;
 
 import android.support.v7.app.ActionBarActivity;
